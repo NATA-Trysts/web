@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import BuilderImg from '@assets/images/builder.png'
-import { Features } from '@components/Features'
+import BuilderImg from '@assets/images/builder.png';
+import { Features } from '@components/Features';
 
 export const BuildVirtualSpace = () => {
   return (
-    <Features color='194,97,254' colorDark='53,42,79'>
+    <Features color="194,97,254" colorDark="53,42,79">
       <Features.Main
         title={
           <>
@@ -14,8 +14,8 @@ export const BuildVirtualSpace = () => {
           </>
         }
         image={BuilderImg}
-        text='Create Virtual Space in seconds, invite friend, protect by the password.'
+        text="Create Virtual Space in seconds, invite friend, protect by the password."
       />
     </Features>
-  )
-}
+  );
+};

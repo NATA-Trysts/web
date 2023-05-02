@@ -9,9 +9,9 @@ export const Shortcuts = [
   { text: 'Toggle Chat', keys: 'c' },
   { text: 'Builder Undo', keys: '⌘z' },
   { text: 'Builder Redo', keys: '⌘y' },
-]
+];
 
 export const NavLinks = [
   { href: '/pricing', label: 'Pricing' },
   { href: '/marketplace', label: 'Marketplace' },
-]
+];

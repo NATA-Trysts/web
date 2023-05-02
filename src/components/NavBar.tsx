@@ -26,10 +26,7 @@ export const NavBar = ({ isOpen }: NavBarProps) => {
           {Links.map((link) => (
             <li
               key={link.label}
-              className={clsx(
-                'ml-6 border-b border-gray-500 md:border-none',
-                link.className
-              )}
+              className={clsx('ml-6 border-b border-gray-500 md:border-none')}
             >
               <Link
                 href={link.href}

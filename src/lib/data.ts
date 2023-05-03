@@ -12,6 +12,6 @@ export const Shortcuts = [
 ];
 
 export const NavLinks = [
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/marketplace', label: 'Marketplace' },
+  { href: 'https://app.trysts.io/pricing', label: 'Pricing' },
+  { href: 'https://app.trysts.io/marketplace', label: 'Marketplace' },
 ];

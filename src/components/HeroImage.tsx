@@ -1,32 +1,31 @@
-'use client';
+'use client'
 
-import HeroImg from '@assets/images/hero.webp';
-// import HeroImg from '@assets/images/hero2.png'
-import clsx from 'clsx';
-import Image from 'next/image';
-import type { CSSProperties } from 'react';
-import { useEffect, useRef, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import HeroImg from '@assets/images/hero.png'
+import clsx from 'clsx'
+import Image from 'next/image'
+import type { CSSProperties } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 interface Line {
-  id: string;
-  direction: 'to bottom' | 'to right';
-  size: number;
-  duration: number;
+  id: string
+  direction: 'to bottom' | 'to right'
+  size: number
+  duration: number
 }
 
 const randomNumberBetween = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
 export const HeroImage = () => {
-  const { ref, inView } = useInView({ threshold: 0.4, triggerOnce: true });
-  const [lines, setLines] = useState<Line[]>([]);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { ref, inView } = useInView({ threshold: 0.4, triggerOnce: true })
+  const [lines, setLines] = useState<Line[]>([])
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const removeLine = (id: string) => {
-    setLines((prev) => prev.filter((line) => line.id !== id));
-  };
+    setLines((prev) => prev.filter((line) => line.id !== id))
+  }
 
   useEffect(() => {
     const renderLine = (timeout: number) => {
@@ -39,30 +38,29 @@ export const HeroImage = () => {
             size: randomNumberBetween(10, 30),
             id: Math.random().toString(36).substring(7),
           },
-        ]);
-        renderLine(randomNumberBetween(800, 2500));
-      }, timeout);
-    };
+        ])
+        renderLine(randomNumberBetween(800, 2500))
+      }, timeout)
+    }
 
-    renderLine(randomNumberBetween(800, 1300));
+    renderLine(randomNumberBetween(800, 1300))
 
     // eslint-disable-next-line consistent-return
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, [inView, setLines]);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    }
+  }, [inView, setLines])
 
   return (
-    <div ref={ref} className="mt-[12.8rem] [perspective:2000px]">
+    <div ref={ref} className='mt-[12.8rem] [perspective:2000px]'>
       <div
         className={clsx(
           'relative rounded-lg border border-gray-100 bg-white bg-opacity-[0.01] bg-hero-gradient',
           inView ? 'animate-image-rotate' : '[transform:rotateX(25deg)]',
           'before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-hero-glow before:opacity-0 before:[filter:blur(120px)]',
-          inView && 'before:animate-image-glow'
-        )}
-      >
-        <div className="absolute top-0 left-0 z-20 h-full w-full">
+          inView && 'before:animate-image-glow',
+        )}>
+        <div className='absolute top-0 left-0 z-20 h-full w-full'>
           {lines.map((line) => (
             <span
               key={line.id}
@@ -79,7 +77,7 @@ export const HeroImage = () => {
                 line.direction === 'to bottom' &&
                   'right-0 h-[calc(var(--size)*1rem)] w-[1px] animate-glow-line-vertical',
                 line.direction === 'to right' &&
-                  'left-0 h-[1px] w-[calc(var(--size)*1rem)] animate-glow-line-horizontal'
+                  'left-0 h-[1px] w-[calc(var(--size)*1rem)] animate-glow-line-horizontal',
               )}
             />
           ))}
@@ -88,27 +86,33 @@ export const HeroImage = () => {
           className={clsx(
             'absolute top-0 left-0 h-full w-full',
             '[&_path]:stroke-white [&_path]:[stroke-opacity:0.2] [&_path]:[stroke-dasharray:1] [&_path]:[stroke-dashoffset:1]',
-            inView && '[&_path]:animate-sketch-lines'
+            inView && '[&_path]:animate-sketch-lines',
           )}
-          width="100%"
-          viewBox="0 0 1499 778"
-          fill="none"
-        >
-          <path pathLength="1" d="M1500 72L220 72"></path>
-          <path pathLength="1" d="M1500 128L220 128"></path>
-          <path pathLength="1" d="M1500 189L220 189"></path>
-          <path pathLength="1" d="M220 777L220 1"></path>
-          <path pathLength="1" d="M538 777L538 128"></path>
+          width='100%'
+          viewBox='0 0 1499 778'
+          fill='none'>
+          <path pathLength='1' d='M1500 72L220 72'></path>
+          <path pathLength='1' d='M1500 128L220 128'></path>
+          <path pathLength='1' d='M1500 189L220 189'></path>
+          <path pathLength='1' d='M220 777L220 1'></path>
+          <path pathLength='1' d='M538 777L538 128'></path>
         </svg>
+        {/* <div className={clsx('relative z-10 transition-opacity delay-[600ms]', inView ? 'opacity-100' : 'opacity-0')}>
+          <iframe
+            src='https://my.spline.design/minihomeconditionallogiccopy-883dc10d85948436f8472a6ccfce0193/'
+            frameborder='0'
+            width='100%'
+            height='100%'></iframe>
+        </div> */}
         <Image
           src={HeroImg}
-          alt="Hero image"
+          alt='Hero image'
           className={clsx(
-            'relative z-10 transition-opacity delay-[600ms]',
-            inView ? 'opacity-100' : 'opacity-0'
+            'relative z-10 rounded-lg transition-opacity delay-[600ms]',
+            inView ? 'opacity-100' : 'opacity-0',
           )}
         />
       </div>
     </div>
-  );
-};
+  )
+}
